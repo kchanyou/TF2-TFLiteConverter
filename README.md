@@ -20,9 +20,9 @@ import os
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--model', help='Folder that the saved model is located in',
-                    default='C:/venv/tf2/models/research/object_detection/exported_models/my_saved_model/saved_model')
+                    default='D:/tf2/models/research/object_detection/exported_models/my_saved_model/saved_model')
 parser.add_argument('--output', help='Folder that the tflite model will be written to',
-                    default='C:/venv/tf2/models/research/object_detection/exported_models/my_tflite_model')
+                    default='D:/tf2/models/research/object_detection/exported_models/my_tflite_model')
 args = parser.parse_args()
 
 output_dir = args.output
@@ -34,7 +34,10 @@ converter.optimizations = [tf.lite.Optimize.DEFAULT]
 converter.experimental_new_converter = True
 converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS, tf.lite.OpsSet.SELECT_TF_OPS]
 
+converter.input_shapes = {"serving_default_input_tensor:0": [1, 640, 640, 3]}
+
 tflite_model = converter.convert()
+
 
 output_path = os.path.join(output_dir, 'model.tflite')
 
