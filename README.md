@@ -1,10 +1,6 @@
 # TF2-TFliteConverter
 Test Model: SSD MobileNet v2 FPNLite 640x640
 
-# TF2-TFliteConverter
-SSD Mobilenet v2 FPNLite 640x640
-
-
 ### (1) tfevents to saved_model
 
 ```
